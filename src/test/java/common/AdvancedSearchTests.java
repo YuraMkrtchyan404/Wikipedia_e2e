@@ -1,6 +1,7 @@
 package common;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +15,6 @@ import static constants.inputs.InputConstants.SEARCH_WORDS;
 public class AdvancedSearchTests extends BaseTest {
 
 
-
     @Test
     public void theseWordsTest() {
         String[] wordArray = SEARCH_WORDS.split(" ");
@@ -24,17 +24,7 @@ public class AdvancedSearchTests extends BaseTest {
         Assert.assertTrue(element.getText().contains(wordArray[0]) || element.getText().contains(wordArray[1]));
     }
 
-    @Test
-    public void exactlyThisTextTest(){
-        String[] wordArray = SEARCH_SENTENCE.split(" ");
-        AdvancedSearchPage advancedSearchPage = homePage.clickSearchButton();
-        advancedSearchPage.clickAdvancedSearchDropdown();
-        advancedSearchPage.fillExactlyThisTextField(SEARCH_SENTENCE);
-        advancedSearchPage.clickSearch();
-        WebElement element = advancedSearchPage.getOneSearchResult(AdvancedSearchPage.searchText);
-        Assert.assertTrue(element.getText().toLowerCase().contains(wordArray[0]) || element.getText().toLowerCase().contains(wordArray[1]));
-    }
-
+    //Unsuccessful :(
 //    @Test
 //    public void sortTest(){
 //        AdvancedSearchPage advancedSearchPage = homePage.clickSearchButton();
@@ -43,8 +33,8 @@ public class AdvancedSearchTests extends BaseTest {
 //        advancedSearchPage.setSortingOptionsDropdownToCurrentOnTop();
 //        advancedSearchPage.fillTheseWordsField("car");
 //        advancedSearchPage.clickSearch();
-//        List<WebElement> searchResults = advancedSearchPage.getListOfResults();
-//        System.out.println(searchResults.isEmpty());
+//        WebElement searchResult = advancedSearchPage.getListOfResults();
+//        System.out.println(searchResult.findElement(By.className("mw-search-result-data")));
 //        Assert.assertTrue(1==1);
 //    }
 

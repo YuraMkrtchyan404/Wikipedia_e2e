@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.base.BasePage;
 
 import java.time.Duration;
-import java.util.List;
 
 import static constants.locators.AdvancedSearchPageLocators.*;
 
@@ -68,17 +67,16 @@ public class AdvancedSearchPage extends BasePage {
         dropdown.click();
     }
 
-    public void setSortingOptionsDropdownToCurrentOnTop(){
+    public void setSortingOptionsDropdownToCurrentOnTop() {
         WebElement option = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(editDateCurrentOnTop));
         option.click();
     }
 
-    public List<WebElement> getListOfResults(){
-        List<WebElement> searchResults = new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.numberOfElementsToBe(By.className("mw-search-result-data"), 3));
-//        List<WebElement> searchResults = driver.findElements(By.className("mw-search-result-data"));
-        return searchResults;
+    public WebElement getListOfResults() {
+        WebElement searchResult = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.className("mw-search-result-data")));
+        return searchResult.findElement(By.tagName("li"));
     }
 
 }
